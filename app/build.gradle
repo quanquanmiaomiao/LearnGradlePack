@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.shop.com.quanshoppingmall"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // 执行lint检查，有任何错误或者警告提示，都会终止构建，我们将其关掉
+    lintOptions{
+        abortOnError false
+    }
+
+    // 设置占位符默认值
+    defaultConfig {
+        manifestPlaceholders = [ UMENG_CHANNEL_VALUE:"wandoujia" ]
+    }
+    // 渠道Flavor
+    productFlavors {
+        wandoujia{}
+        c360{}
+        uc{}
+        yingyongbao{}
+        xiaomi{}
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        release {
+            // 混淆
+            minifyEnabled true
+            // 移除无用文件
+            shrinkResources true
+            //Zipalign优化
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 不显示log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            // 签名
+            signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为app_v3.0(45)_pp.apk
+                        def fileName = "app_v${defaultConfig.versionName}(" +
+                                "${defaultConfig.versionCode})_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.jakewharton:butterknife:8.2.1'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.joanzapata.android:base-adapter-helper:1.1.11'
+}

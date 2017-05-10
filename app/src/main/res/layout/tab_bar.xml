@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><!--标签栏-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separate" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_bar_home"
+            android:text="主页"
+            android:textAlignment="center"
+            android:textColor="@drawable/tab_bar_txt_style" />
+
+        <TextView
+            android:id="@+id/order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_bar_order"
+            android:text="订单"
+            android:textAlignment="center"
+            android:textColor="@drawable/tab_bar_txt_style" />
+
+        <TextView
+            android:id="@+id/chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_bar_chart"
+            android:text="购物车"
+            android:textAlignment="center"
+            android:textColor="@drawable/tab_bar_txt_style" />
+
+        <TextView
+            android:id="@+id/center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tab_bar_center"
+            android:text="我的"
+            android:textAlignment="center"
+            android:textColor="@drawable/tab_bar_txt_style" />
+    </LinearLayout>
+
+
+</LinearLayout>

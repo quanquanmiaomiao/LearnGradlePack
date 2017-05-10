@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/img_goods_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/home_img"/>
+    <TextView
+        android:id="@+id/txt_goods_name"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:ellipsize="end"
+        android:textColor="@color/text_second"
+        android:text="春秋中长款学生甜美百搭长裙"/>
+
+    <TextView
+        android:id="@+id/txt_goods_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:text="￥78"/>
+
+</LinearLayout>
